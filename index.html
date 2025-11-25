@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seismic Передбачення</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="main-container">
+    <div class="header">
+      <h1 class="title">🔮 Seismic Передбачення</h1>
+      <p class="subtitle">Обери карту та отримай своьо передбачення!</p>
+    </div>
+
+    <div id="cards-container" class="cards-container"></div>
+
+    <div id="prediction-modal" class="prediction-modal hidden">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closePrediction()">×</button>
+        <div class="modal-card">
+          <div class="card-visual"></div>
+        </div>
+        <div class="prediction-text" id="prediction-text"></div>
+        <div class="action-buttons">
+          <button class="btn btn-copy" onclick="copyPrediction()">Skopiyuvaty</button>
+          <button class="btn btn-twitter" onclick="tweetPrediction()">Repostnyty u Twitter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="predictions.js"></script>
+  <script>
+    const CARD_COUNT = 5;
+    const COLORS = ['#9d6b8a', '#a87699', '#b38ba6', '#8d5a7e', '#ad7b96'];
+    let selectedPrediction = '';
+
+    function initCards() {
+      const container = document.getElementById('cards-container');
+      container.innerHTML = '';
+      for (let i = 0; i < CARD_COUNT; i++) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.backgroundColor = COLORS[i];
+        card.innerHTML = `<div class="card-number">${i + 1}</div>`;
+        card.onclick = () => showPrediction(i);
+        container.appendChild(card);
+      }
+    }
+
+    function getRandomPrediction() {
+      return predictions[Math.floor(Math.random() * predictions.length)];
+    }
+
+    function showPrediction(cardIndex) {
+      selectedPrediction = getRandomPrediction();
+      const modal = document.getElementById('prediction-modal');
+      const textEl = document.getElementById('prediction-text');
+      const cardVisual = modal.querySelector('.card-visual');
+
+      textEl.textContent = selectedPrediction;
+      cardVisual.style.backgroundColor = COLORS[cardIndex];
+      modal.classList.remove('hidden');
+    }
+
+    function closePrediction() {
+      document.getElementById('prediction-modal').classList.add('hidden');
+    }
+
+    function copyPrediction() {
+      const text = selectedPrediction + '\n\n🔮 Seismic Predictions - https://github.com/Khersonskiy/seismic-predictions';
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Копіювано!');
+      });
+    }
+
+    function tweetPrediction() {
+      const text = selectedPrediction + ' 🔮 #Seismic #Predictions';
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      window.open(tweetUrl, '_blank');
+    }
+
+    initCards();
+  </script>
+</body>
+</html>
