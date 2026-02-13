@@ -222,3 +222,8 @@ body {
     font-size: 1.1em;
   }
 }
+
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+}
