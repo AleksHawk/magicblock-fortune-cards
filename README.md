@@ -77,6 +77,6 @@ MIT License - використовуй вільно! 🎉
 
 ---
 
-**Розробник**: [@Khersonskiy](https://twitter.com/khersonskiy)  
+**Розробник**: [@hawk_tyt](https://twitter.com/hawk_tyt)  
 **Проект**: MagicBlock Predictions  
 **Статус**: ✅ Live & Working
