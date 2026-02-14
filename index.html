@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MagicBlock Fortune Cards</title>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>magicblock fortune cards</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<div class="how">
-    <h2>How It Works</h2>
-
-    <p>Click a card — Select any of the 5 cards to reveal your fortune</p>
-
-    <p>Random prediction — Each card shows a unique MagicBlock fortune</p>
-
-    <p>Share results — Post your fortune on X with a branded image</p>
-</div>
-<div class="footer">
-    Creator <a href="https://x.com/hawk_tyt" target="_blank">@Hawk</a><br>
-    made this with love especially for the MagicBlock community
-</div>
-
 <body>
 
-<header class="header">
-    <img src="images/logo.png" class="logo">
-    <h1>🔮 MagicBlock Fortune Cards 🔮</h1>
-</header>
+    <div class="main-wrapper">
+        <header class="header">
+            <img src="images/logo.png" class="logo" alt="magicblock logo">
+            <h1>🔮 magicblock fortune cards 🔮</h1>
+        </header>
 
-<div class="cards" id="cards"></div>
-
-<div class="overlay" id="overlay"></div>
-
-<div class="popup" id="popup">
-    <h2 id="predictionText"></h2>
-
-    <div class="buttons">
-        <button onclick="downloadCard()">Download</button>
-        <button onclick="shareCard()">Share</button>
+        <div class="cards" id="cards"></div>
+        
+        <div class="how">
+            <h2>how it works</h2>
+            <div class="how-item">
+                <strong>click a card</strong> — select any of the 5 cards to reveal your fortune
+            </div>
+            <div class="how-item">
+                <strong>random prediction</strong> — each card shows a unique magicblock fortune
+            </div>
+            <div class="how-item">
+                <strong>share results</strong> — post your fortune on x with a branded image
+            </div>
+        </div>
     </div>
-</div>
 
-<script src="predictions.js"></script>
+    <footer class="footer">
+        creator <a href="https://x.com/hawk_tyt" target="_blank">@hawk</a><br>
+        made with love for the magicblock community
+    </footer>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <h2 id="predictionText"></h2>
+        <div class="buttons">
+            <button onclick="downloadCard()">download</button>
+            <button onclick="shareCard()">share</button>
+        </div>
+    </div>
+
+    <script src="predictions.js"></script>
 
 </body>
 </html>
