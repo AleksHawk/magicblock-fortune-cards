@@ -74,6 +74,16 @@ body {
     color: white;
     max-width: 600px;
 }
+.footer {
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+.footer a {
+    color: #8b5cf6;
+    text-decoration: none;
+}
 
 .how h2 {
     margin-bottom: 20px;
