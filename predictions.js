@@ -108,7 +108,7 @@ const popup = document.getElementById("popup");
 const overlay = document.getElementById("overlay");
 const text = document.getElementById("predictionText");
 
-// Логіка карток
+// Генерація карток
 for(let i=0; i<5; i++){
     const card = document.createElement("div");
     card.className = "card";
@@ -135,45 +135,50 @@ overlay.onclick = () => {
     overlay.style.display = "none";
 };
 
-// --- ГЕНЕРАЦІЯ КАРТИНКИ ПО ШАБЛОНУ ---
+// --- ФУНКЦІЯ ГЕНЕРАЦІЇ КАРТИНКИ (ТІЛЬКИ ШАБЛОН) ---
 function downloadCard(){
     const canvas = document.createElement("canvas");
-    // Розмір горизонтальний (як у Twitter)
     canvas.width = 1200;
     canvas.height = 675;
     const ctx = canvas.getContext("2d");
 
-    // Завантажуємо твій шаблон
     const template = new Image();
-    template.src = "images/template.png"; // Переконайся, що файл називається саме так!
-    
-    // ВАЖЛИВО: чекаємо поки картинка завантажиться, перш ніж малювати текст
+    // ВАЖЛИВО: Шлях до твого файлу
+    template.src = "images/template.png"; 
+    template.crossOrigin = "anonymous"; // Допомагає уникнути помилок завантаження
+
     template.onload = () => {
-        // 1. Малюємо твій шаблон як фон
+        // 1. Малюємо твій шаблон (фон + лого + твій нік)
         ctx.drawImage(template, 0, 0, 1200, 675);
 
-        // 2. Налаштування тексту
-        ctx.fillStyle = "#ffffff"; // Білий текст
-        // Тінь для тексту, щоб читався на будь-якому фоні
-        ctx.shadowColor = "rgba(0,0,0,0.8)"; 
-        ctx.shadowBlur = 10;
+        // 2. Налаштування тексту передбачення
+        ctx.fillStyle = "#ffffff"; 
+        ctx.shadowColor = "rgba(0,0,0,0.5)"; 
+        ctx.shadowBlur = 5;
         
-        // Шрифт: жирний, курсив, красивий
-        ctx.font = "italic bold 56px Georgia"; 
+        // Шрифт: Жирний Georgia (або зміни на Arial, якщо хочеш простіше)
+        ctx.font = "bold 60px Georgia"; 
         ctx.textAlign = "center";
         
-        // 3. Малюємо текст по центру картинки (координати 600, 337 це центр 1200х675)
-        // Остання цифра (80) - це відступ між рядками
+        // 3. Малюємо текст по центру. 
+        // canvas.width/2 = центр по горизонталі
+        // canvas.height/2 = центр по вертикалі
         wrapText(ctx, `"${selectedText}"`, canvas.width/2, canvas.height/2, 1000, 80);
 
         // 4. Скачування
         const link = document.createElement("a");
         link.download = "magicblock-fortune.png";
-        link.href = canvas.toDataURL();
+        link.href = canvas.toDataURL("image/png");
         link.click();
+    };
+
+    // Якщо картинка не грузиться, виведемо помилку в консоль
+    template.onerror = () => {
+        alert("Помилка завантаження шаблону. Перевір, чи називається файл template.png в папці images.");
     };
 }
 
+// Функція переносу тексту
 function wrapText(ctx, text, x, y, maxWidth, lineHeight){
     const words = text.split(" ");
     let line = "";
@@ -191,7 +196,6 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight){
     }
     lines.push(line);
 
-    // Центрування блоку тексту по вертикалі
     let startY = y - ((lines.length - 1) * lineHeight) / 2;
 
     for(let k=0; k<lines.length; k++){
@@ -199,7 +203,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight){
     }
 }
 
-// --- ВІДКРИТТЯ ТВІТЕРА ---
+// --- ФУНКЦІЯ ШЕРИНГУ (ТВІТЕР) ---
 function shareCard(){
     const shareText = 
 `Sometimes all it takes is one little sign to know you're on the right track.
@@ -212,9 +216,9 @@ https://alekshawk.github.io/magicblock-fortune-cards/
 
 Creator @hawk made this with love for the @MagicBlock community`;
 
-    // Створюємо посилання для Twitter
+    // Формуємо посилання
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
     
-    // Відкриваємо нове вікно
+    // Відкриваємо в новому вікні
     window.open(twitterUrl, '_blank');
 }
