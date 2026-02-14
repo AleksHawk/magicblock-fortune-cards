@@ -3,30 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MagicBlock Fortune Cards</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<img src="images/logo.png" class="logo">
+<header class="header">
+    <img src="images/logo.png" class="logo">
+    <h1>🔮 MagicBlock Fortune Cards 🔮</h1>
+</header>
 
-<h1>🔮 MagicBlock Fortune Cards 🔮</h1>
-
-<div class="cards-container" id="cardsContainer"></div>
+<div class="cards" id="cards"></div>
 
 <div class="overlay" id="overlay"></div>
 
-<div id="fortune-box">
-<h2>Your Fortune</h2>
+<div class="popup" id="popup">
+    <h2 id="predictionText"></h2>
 
-<p id="fortune-text"></p>
-
-<button onclick="shareOnTwitter()">Share on X</button>
-<button onclick="downloadImage()">Download Image</button>
+    <div class="buttons">
+        <button onclick="downloadCard()">Download</button>
+        <button onclick="shareCard()">Share</button>
+    </div>
 </div>
-
-<canvas id="shareCanvas" width="800" height="400"></canvas>
 
 <script src="predictions.js"></script>
 
