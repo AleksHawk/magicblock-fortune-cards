@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MagicBlock Fortune Cards</title>
     
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="image/png" href="images/card-logo.png">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -53,37 +53,31 @@
 
     <script>
         document.addEventListener('mousemove', function(e) {
-            // Створюємо іскру
             let particle = document.createElement('div');
             particle.classList.add('magic-particle');
             document.body.appendChild(particle);
 
-            // Позиція іскри (там де мишка)
             let x = e.clientX;
             let y = e.clientY;
             particle.style.left = x + 'px';
             particle.style.top = y + 'px';
 
-            // Випадковий розмір
             let size = Math.random() * 8;
             particle.style.width = 2 + size + 'px';
             particle.style.height = 2 + size + 'px';
 
-            // Випадковий напрямок руху
             let destX = x + (Math.random() - 0.5) * 50;
             let destY = y + (Math.random() - 0.5) * 50;
 
-            // Анімація
             let animation = particle.animate([
                 { transform: `translate(0, 0)`, opacity: 1 },
                 { transform: `translate(${destX - x}px, ${destY - y}px)`, opacity: 0 }
             ], {
-                duration: 500 + Math.random() * 500, // 0.5 - 1 секунда
+                duration: 500 + Math.random() * 500,
                 easing: 'cubic-bezier(0, .9, .57, 1)',
                 delay: Math.random() * 200
             });
 
-            // Видаляємо елемент після анімації
             animation.onfinish = () => particle.remove();
         });
     </script>
