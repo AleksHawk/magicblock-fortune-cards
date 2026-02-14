@@ -1,3 +1,19 @@
+.how {
+    margin-top: 60px;
+    text-align: center;
+    color: white;
+    max-width: 600px;
+}
+
+.how h2 {
+    margin-bottom: 20px;
+}
+
+.how p {
+    margin: 8px 0;
+    opacity: 0.8;
+}
+
 body {
     margin: 0;
     font-family: Arial;
