@@ -1,102 +1,39 @@
-const predictions = [
-  "Alpha is closer than you think",
-  "Your next move unlocks hidden value",
-  "A powerful opportunity is syncing",
-  "Your strategy is about to pay off",
-  "Fortune favors your patience",
-  "A new path is validating",
-  "Your efforts are compounding",
-  "A rare signal is approaching",
-  "Momentum is building around you",
-  "A hidden advantage is emerging",
-  "Your secrets remain protected",
-  "Privacy strengthens your position",
-  "Zero-knowledge is on your side",
-  "Hidden truths bring clarity",
-  "A private signal reveals direction",
-  "Silence will be your strength",
-  "What is unseen holds power",
-  "Encryption shields your future",
-  "Trust flows through secure paths",
-  "Privacy unlocks confidence",
-  "Your next build will surprise you",
-  "Innovation flows through you",
-  "A new tool empowers your vision",
-  "Creation is your strongest asset",
-  "Your system is stabilizing",
-  "A breakthrough is near",
-  "Efficiency increases rapidly",
-  "Complexity turns into clarity",
-  "Your infrastructure strengthens",
-  "Automation brings relief",
-  "Your future expands rapidly",
-  "A new era is forming",
-  "Timing aligns in your favor",
-  "Destiny favors your courage",
-  "Your path becomes clearer",
-  "Unexpected doors will open",
-  "Transformation begins now",
-  "Your vision attracts allies",
-  "The future recognizes your effort",
-  "A turning point approaches",
-  "Luck is syncing with your actions",
-  "Positive energy amplifies results",
-  "Your confidence attracts success",
-  "Momentum is unstoppable",
-  "Fortune follows your focus",
-  "Your aura strengthens outcomes",
-  "Optimism unlocks new paths",
-  "Alignment brings ease",
-  "Success resonates around you",
-  "Your energy multiplies impact",
-  "Clarity arrives unexpectedly",
-  "Insight reveals hidden opportunities",
-  "A smart decision changes everything",
-  "Your intuition is accurate",
-  "Knowledge empowers action",
-  "Reflection leads to growth",
-  "Wisdom guides your timing",
-  "Patience unlocks mastery",
-  "Learning accelerates progress",
-  "Awareness strengthens choices",
-  "Strong allies surround you",
-  "Collaboration multiplies success",
-  "Your network strengthens daily",
-  "Trust builds powerful bonds",
-  "A meaningful partnership forms",
-  "Community supports your growth",
-  "Shared vision attracts energy",
-  "Connections open new doors",
-  "Cooperation speeds progress",
-  "Unity amplifies impact",
-  "Your block is confirmed",
-  "The chain favors your actions",
-  "A rare block is forming",
-  "Signals are validating",
-  "Your ledger shows growth",
-  "The network supports you",
-  "Your hash aligns perfectly",
-  "The protocol trusts your path",
-  "Consensus moves in your favor",
-  "Your node is fully synced",
-  "A legendary outcome approaches",
-  "Your influence expands globally",
-  "A historic opportunity emerges",
-  "You are entering a peak phase",
-  "Exceptional success awaits",
-  "Your impact becomes permanent",
-  "A rare alignment occurs",
-  "Your legacy begins now",
-  "Great recognition is coming",
-  "Your breakthrough becomes inevitable",
-  "Everything is aligning",
-  "Trust your direction",
-  "Progress accelerates",
-  "Balance creates power",
-  "Timing is perfect",
-  "Growth is unstoppable",
-  "Confidence brings victory",
-  "Your future is bright",
-  "Opportunities multiply",
-  "Success is inevitable"
+const fortunes = [
+"Alpha is closer than you think",
+"Your next move unlocks hidden value",
+"Momentum is building around you",
+"A powerful opportunity is syncing",
+"Success is inevitable"
 ];
+
+let selected = false;
+
+function generateCards() {
+  const container = document.getElementById("cardsContainer");
+
+  for (let i = 1; i <= 5; i++) {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.textContent = i;
+
+    card.onclick = () => {
+      if (!selected) reveal(card);
+    };
+
+    container.appendChild(card);
+  }
+}
+
+function reveal(card) {
+  selected = true;
+
+  const text = document.getElementById("fortune-text");
+  const box = document.getElementById("fortune-box");
+
+  const random = Math.floor(Math.random() * fortunes.length);
+  text.textContent = fortunes[random];
+
+  box.classList.add("show");
+}
+
+generateCards();
