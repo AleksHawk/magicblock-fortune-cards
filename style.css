@@ -1,10 +1,22 @@
-
 body {
     margin: 0;
-    font-family: Arial;
+    padding: 0;
+    font-family: Arial, sans-serif;
     background: #0c0c0c;
     color: white;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* розтягує сайт на весь екран */
+    text-transform: lowercase; /* весь текст маленькими літерами */
+}
+
+/* обгортка для основного контенту, щоб притиснути футер */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header {
@@ -19,77 +31,122 @@ body {
 .cards {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* щоб картки переносились на мобільному */
     gap: 30px;
-    margin-top: 60px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 100%;
 }
 
 .card {
     width: 180px;
     height: 260px;
-    background: linear-gradient(135deg,#8b5cf6,#ec4899);
+    background: linear-gradient(135deg, #8b5cf6, #aa00ff); /* додав твій фіолетовий */
     border-radius: 16px;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 0 25px rgba(140,90,255,0.6);
+    box-shadow: 0 0 25px rgba(170, 0, 255, 0.4);
 }
-
 
 .card:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(170, 0, 255, 0.8);
 }
 
+/* стилізація блоку "як це працює" */
+.how {
+    margin: 40px 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05); /* ледь помітний фон */
+    border-radius: 12px;
+    max-width: 500px;
+    border: 1px solid #333;
+}
+
+.how h2 {
+    color: #aa00ff;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.how-item {
+    margin: 10px 0;
+    opacity: 0.9;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.how-item strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* футер завжди знизу */
+.footer {
+    padding: 20px;
+    font-size: 13px;
+    opacity: 0.7;
+    background-color: #000;
+    width: 100%;
+    box-sizing: border-box; /* щоб padding не ламав ширину */
+    border-top: 1px solid #222;
+}
+
+.footer a {
+    color: #aa00ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.footer a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #aa00ff;
+}
+
+/* попап і оверлей */
 .overlay {
     display: none;
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px); /* розмиття фону */
+    z-index: 10;
 }
 
 .popup {
     display: none;
     position: fixed;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    background:#111;
-    padding:30px;
-    border-radius:15px;
-    width:300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    border: 1px solid #aa00ff;
+    box-shadow: 0 0 30px rgba(170, 0, 255, 0.3);
+    z-index: 20;
+    text-align: center;
 }
 
 .buttons button {
-    margin:10px;
-    padding:10px 20px;
-    border:none;
-    background:#8b5cf6;
-    color:white;
-    cursor:pointer;
-}
-.how {
-    margin-top: 60px;
-    text-align: center;
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #aa00ff;
     color: white;
-    max-width: 600px;
-}
-.footer {
-    margin-top: 40px;
-    font-size: 14px;
-    opacity: 0.6;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: lowercase;
+    transition: 0.2s;
 }
 
-.footer a {
-    color: #8b5cf6;
-    text-decoration: none;
-}
-
-.how h2 {
-    margin-bottom: 20px;
-}
-
-.how p {
-    margin: 8px 0;
-    opacity: 0.8;
+.buttons button:hover {
+    background: #8800cc;
+    transform: translateY(-2px);
 }
